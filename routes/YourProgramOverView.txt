@@ -1,0 +1,8 @@
+/////// install pakeges ///
+
+npm i nodemon
+npm i cors
+npm i mysql
+npm i multer
+npm i
+npm install uuid
