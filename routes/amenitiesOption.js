@@ -175,5 +175,30 @@ router.post('/add_new_amenities_option',upload.single('icon'), function(req, res
    }
   });
 
+router.post('/displayalloption_for_vendor', function(req, res, next) {
+     
+   try{
+      pool.query("select * from amenitiesoption AO where amenitiesid=?",[req.body.amenitiesid],function(error,result){
+       if(error)
+       {  
+        console.log(error)
+          return res.status(200).json({status:false,data:[]})
+       }
+       else
+       {
+        
+          return res.status(200).json({status:true,data:result})
+       }
+  
+      })
+  
+   }
+   catch(e)
+   {
+      return res.status(500).json({status:false,data:[]})
+   }
+  });
+
+
 
 module.exports = router;
