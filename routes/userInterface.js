@@ -4,6 +4,8 @@ var pool=require('./pool')
 var upload=require("./multer")
 
 /* GET users listing. */
+
+  
 router.get('/displayallproperties', function(req, res, next) {
      
     try{

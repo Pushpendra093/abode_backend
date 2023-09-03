@@ -4,45 +4,7 @@ var pool=require('./pool')
 var upload=require("./multer")
 
 /* GET users listing. */
-router.post('/add_vendors', function(req, res, next) {
-    
-    try{
-       pool.query("insert into vendor ( firstname, lastname, emailid, mobileno, dob) values(?,?,?,?,?)",[req.body.firstname,req.body.lastname,req.body.emailid,req.body.mobileno,req.body.dob],function(error,result){
-        if(error)
-        { 
-         
-           return res.status(200).json({status:false,message:'Server Error(Database) ....'})
-        }
-        else
-        {
-         pool.query("insert into vendorproperties ( emailid, mobileno, propertyid, subpropertyid, propertystatus, address, placeoffer, amenities, pictures, placedescription, title, price, offerprice) values(?,?,?,?,?,?,?,?,?,?,?,?,?)",
-         [
-            req.body.emailid,
-            req.body.mobileno,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
 
-         ],function(error,result){   })
-         return res.status(200).json({status:true,message:'add vendor seccesfully'})
-        }
-   
-       })
-   
-    }
-    catch(e)
-    {
-       return res.status(500).json({status:false,message:'Server not responding plz contact administrator ....'})
-    }
-   });
 
    router.post("/search_vendor_property", function (req, res, next) {
      
@@ -71,6 +33,50 @@ router.post('/add_vendors', function(req, res, next) {
 
     
   });
+
+  router.post('/add_vendors', function(req, res, next) {
+    
+    try{
+       pool.query("insert into vendor ( firstname, lastname, emailid, mobileno, dob) values(?,?,?,?,?)",[req.body.firstname,req.body.lastname,req.body.emailid,req.body.mobileno,req.body.dob],function(error,result){
+        if(error)
+        { 
+         
+           return res.status(200).json({status:false,message:'Server Error(Database) ....'})
+        }
+        else
+        {
+         pool.query("insert into vendorproperties ( emailid, mobileno, propertyid, subpropertyid, propertystatus, address, placeoffer, amenities, pictures, placedescription, title, price, offerprice) values(?,?,?,?,?,?,?,?,?,?,?,?,?)",
+         [
+            req.body.emailid,
+            req.body.mobileno,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+ 
+         ],function(error,result){  
+          if(result)
+         { return res.status(200).json({status:true,message:'add vendor seccesfully'})}
+      
+          })
+       
+        }
+   
+       })
+   
+    }
+    catch(e)
+    {
+       return res.status(500).json({status:false,message:'Server not responding plz contact administrator ....'})
+    }
+   });
 
 
    router.post("/search_vendor_mobileno", function (req, res, next) {
