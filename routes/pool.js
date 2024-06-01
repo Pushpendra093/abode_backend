@@ -1,9 +1,9 @@
 var mysql=require('mysql')
 
 var pool=mysql.createPool({
-    host:'database-1.cjjar2kbnaz3.us-east-1.rds.amazonaws.com',
+    host:'myserver.cn0is86c40k5.us-east-1.rds.amazonaws.com',
     port:3306,
-    user:'Abode',
+    user:'admin',
     password:'PushJaat123',
     database:'abode',
     connectionLimit:100
